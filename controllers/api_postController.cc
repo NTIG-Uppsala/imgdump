@@ -7,17 +7,17 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1)
     {
         ret["status"] = 403;
-        ret["error"] = "Must be only one file";
+        ret["message"] = "Must be one file";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
     }
 
     auto &file = fileUpload.getFiles()[0];
-
-    if(file.getFileExtension() == "gif"){
+    auto fileExt = file.getFileExtension();
+    if(fileExt == "gif"){
         ret["status"] = 403;
-        ret["error"] = "Gifs not allowed";
+        ret["message"] = "Gifs not allowed";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
@@ -25,7 +25,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
 
     if(file.getFileType() != FileType::FT_IMAGE){
         ret["status"] = 403;
-        ret["error"] = "Must be a image";
+        ret["message"] = "Must be a image";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
@@ -35,9 +35,20 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     auto fileUuid = drogon::utils::getUuid();
     ret["status"] = 200;
     ret["md5"] = md5;
-    ret["filename"] = fileUuid;
+    ret["message"] = "Successful upload!";
+    ret["id"] = fileUuid;
     file.saveAs(fileUuid);
-    LOG_INFO << "The uploaded file has been saved to the ./uploads directory with filename " + fileUuid;
     auto resp=HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
+
+    std::ostringstream databaseQuery;
+    databaseQuery << "INSERT INTO `images`(`id`, `uuid`, `fileExt`, `md5`) VALUES (NULL,'" << fileUuid << "','" << fileExt << "','" << md5 << "')";
+
+    auto clientPtr = drogon::app().getDbClient();
+    auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default");
+    try {
+      auto result = sentQuery.get();
+      } catch (int error) {
+        std::cerr << "errors:" << error << std::endl;
+      }
 }
