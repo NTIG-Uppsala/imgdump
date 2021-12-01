@@ -1,7 +1,7 @@
-#include "api_tset.h"
+#include "api_postController.h"
 using namespace api;
 //add definition of your processing function here
-void tset::poggers(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
+void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
     Json::Value ret;
     MultiPartParser fileUpload;
     if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1)
@@ -39,10 +39,5 @@ void tset::poggers(const HttpRequestPtr& req,std::function<void (const HttpRespo
     file.saveAs(fileUuid);
     LOG_INFO << "The uploaded file has been saved to the ./uploads directory with filename " + fileUuid;
     auto resp=HttpResponse::newHttpJsonResponse(ret);
-    callback(resp);
-}
-
-void tset::ViewTestFileUpload(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
-    auto resp = HttpResponse::newHttpViewResponse("FileUpload");
     callback(resp);
 }
