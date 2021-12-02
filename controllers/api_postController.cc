@@ -33,14 +33,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
 
     auto md5 = file.getMd5();
     auto fileUuid = drogon::utils::getUuid();
-    ret["status"] = 200;
-    ret["md5"] = md5;
-    ret["message"] = "Successful upload!";
-    ret["id"] = fileUuid;
     file.saveAs(fileUuid);
-    auto resp=HttpResponse::newHttpJsonResponse(ret);
-    callback(resp);
-
     std::ostringstream databaseQuery;
     databaseQuery << "INSERT INTO `images`(`id`, `uuid`, `fileExt`, `md5`) VALUES (NULL,'" << fileUuid << "','" << fileExt << "','" << md5 << "')";
 
@@ -48,7 +41,17 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default");
     try {
       auto result = sentQuery.get();
-      } catch (int error) {
+    } 
+      catch (int error) {
         std::cerr << "errors:" << error << std::endl;
-      }
+    }
+    
+
+    ret["status"] = 200;
+    ret["md5"] = md5;
+    ret["message"] = "Successful upload";
+    ret["id"] = fileUuid;
+    auto resp=HttpResponse::newHttpJsonResponse(ret);
+    callback(resp);
+
 }
