@@ -43,7 +43,7 @@
         function progressFunction(evt) {
             let progressBar = document.getElementById("progressBar");
             let percentageDiv = document.getElementById("percentage");
-            if (evt.lengthComputable) {//
+            if (evt.lengthComputable) {
                 progressBar.max = evt.total;
                 progressBar.value = evt.loaded;
                 percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";

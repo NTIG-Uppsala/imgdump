@@ -11,8 +11,8 @@ class getController:public drogon::HttpController<getController>
     //METHOD_ADD(getController::get,"/{2}/{1}",Get);//path is /api/getController/{arg2}/{arg1}
     //METHOD_ADD(getController::your_method_name,"/{1}/{2}/list",Get);//path is /api/getController/{arg1}/{arg2}/list
     //ADD_METHOD_TO(getController::your_method_name,"/absolute/path/{1}/{2}/list",Get);//path is /absolute/path/{arg1}/{arg2}/list
-    ADD_METHOD_TO(getController::ViewTestFileUpload,"/test/sendfile",Get);//path is /absolute/path/{arg1}/{arg2}/list
-    ADD_METHOD_TO(getController::GetImageFromDatabase,"/image/{1}",Get);//path is /absolute/path/{arg1}/{arg2}/list
+    ADD_METHOD_TO(getController::ViewTestFileUpload,"/test/sendfile",Get);//path is /test/sendfile
+    ADD_METHOD_TO(getController::GetImageFromDatabase,"/image/{1}",Get);//path is /image/{1}
 
     METHOD_LIST_END
     // your declaration of processing function maybe like this:

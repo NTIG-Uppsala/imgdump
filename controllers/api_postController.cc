@@ -3,29 +3,29 @@ using namespace api;
 //add definition of your processing function here
 void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
     Json::Value ret;
-    MultiPartParser fileUpload;
-    if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1)
+    MultiPartParser fileUpload; // File Parser
+    if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1) // Är mer eller mindre än 1 fil eller storleken på filen är 0b;
     {
         ret["status"] = 403;
-        ret["message"] = "Must be one file";
+        ret["error"] = "Must be only one file";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
     }
 
     auto &file = fileUpload.getFiles()[0];
-    auto fileExt = file.getFileExtension();
-    if(fileExt == "gif"){
+    
+    if(file.getFileExtension() == "gif"){ // Filen är en gif
         ret["status"] = 403;
-        ret["message"] = "Gifs not allowed";
+        ret["error"] = "Gifs not allowed";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
     }
 
-    if(file.getFileType() != FileType::FT_IMAGE){
+    if(file.getFileType() != FileType::FT_IMAGE){ // Filen är inte en bild
         ret["status"] = 403;
-        ret["message"] = "Must be a image";
+        ret["error"] = "Must be a image";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
@@ -33,25 +33,10 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
 
     auto md5 = file.getMd5();
     auto fileUuid = drogon::utils::getUuid();
-    file.saveAs(fileUuid);
-    std::ostringstream databaseQuery;
-    databaseQuery << "INSERT INTO `images`(`id`, `uuid`, `fileExt`, `md5`) VALUES (NULL,'" << fileUuid << "','" << fileExt << "','" << md5 << "')";
-
-    auto clientPtr = drogon::app().getDbClient();
-    auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default");
-    try {
-      auto result = sentQuery.get();
-    } 
-      catch (int error) {
-        std::cerr << "errors:" << error << std::endl;
-    }
-    
-
     ret["status"] = 200;
     ret["md5"] = md5;
-    ret["message"] = "Successful upload";
-    ret["id"] = fileUuid;
+    ret["filename"] = fileUuid;
+    file.saveAs(fileUuid);
     auto resp=HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
-
 }
