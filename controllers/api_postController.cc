@@ -36,7 +36,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     ret["status"] = 200;
     ret["md5"] = md5;
     ret["filename"] = fileUuid;
-    ret["message"] = "Succsessful upload";
+    ret["message"] = "Successful upload";
     file.saveAs(fileUuid);
     auto resp=HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
