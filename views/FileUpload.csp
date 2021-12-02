@@ -29,7 +29,7 @@
 
         function uploadComplete(evt) {
             let data = JSON.parse(evt.target.responseText);
-            document.getElementById('message').innerHTML = data['message'] + ". Your image id is: " + data['id'];
+            document.getElementById('message').innerHTML = data['message'] + ". Your image id is: " + data['filename'];
         }
         
         function uploadFailed(evt) {
