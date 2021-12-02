@@ -7,7 +7,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1) // Är mer eller mindre än 1 fil eller storleken på filen är 0b;
     {
         ret["status"] = 403;
-        ret["message"] = "Must be only one file";
+        ret["message"] = "Must be one file";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
