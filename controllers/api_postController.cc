@@ -17,7 +17,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     auto fileExt = file.getFileExtension();
     if(fileExt == "gif"){
         ret["status"] = 403;
-        ret["message"] = "Gifs not allowed";
+        ret["message"] = "GIF not allowed";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
