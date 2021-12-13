@@ -9,7 +9,7 @@ void getController::ViewTestFileUpload(const HttpRequestPtr& req,std::function<v
 void getController::GetImageAndRespondToClient(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback, std::string imageId){
     std::ostringstream databaseQuery;
     std::string fileExt;
-    
+
     auto clientPtr = drogon::app().getDbClient();
     databaseQuery << "SELECT `fileExt` FROM `images` WHERE uuid = '" << imageId << "';"; //Formaterar queryn
     auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default"); //Skickar en query till databasen
@@ -40,4 +40,14 @@ void getController::GetImageAndRespondToClient(const HttpRequestPtr& req,std::fu
 
     auto resp = HttpResponse::newFileResponse(filePath.str(), fileName.str(), fileType); // ct bestämmer vilke ext
     callback(resp);
+}
+void getController::DeleteImage(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback, std::string imageId){
+    std::ostringstream databaseQuery;
+    std::string fileExt;
+    Json::Value ret;
+    ret["status"] = 403;
+    ret["message"] = "GIF not allowed";
+    auto resp=HttpResponse::newHttpJsonResponse(ret);
+    callback(resp);
+    return;
 }

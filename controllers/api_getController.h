@@ -13,7 +13,7 @@ class getController:public drogon::HttpController<getController>
     //ADD_METHOD_TO(getController::your_method_name,"/absolute/path/{1}/{2}/list",Get);//path is /absolute/path/{arg1}/{arg2}/list
     ADD_METHOD_TO(getController::ViewTestFileUpload,"/test/sendfile",Get);//path is /test/sendfile
     ADD_METHOD_TO(getController::GetImageAndRespondToClient,"/image/{1}",Get);//path is /image/{1}
-
+    ADD_METHOD_TO(getController::DeleteImage,"/deleted/{1}",Get);//path is /image/{1}
     METHOD_LIST_END
     // your declaration of processing function maybe like this:
     // void get(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback,int p1,std::string p2);
