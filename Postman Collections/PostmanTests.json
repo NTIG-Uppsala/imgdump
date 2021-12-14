@@ -107,7 +107,7 @@
             "disableBodyPruning": true
           },
           "request": {
-            "method": "GET",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "formdata",
@@ -119,7 +119,7 @@
                 }
               ]
             },
-            "url": null
+            "url": "http://13.53.95.77/upload_endpoint"
           },
           "response": [
             {
