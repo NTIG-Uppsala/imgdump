@@ -109,6 +109,16 @@
           "request": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "",
+                  "type": "file",
+                  "src": "UploadPreviouslyDeleted.jpg"
+                }
+              ]
+            },
             "url": null
           },
           "response": []
