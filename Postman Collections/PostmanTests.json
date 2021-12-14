@@ -101,7 +101,7 @@
           "response": []
         },
         {
-          "name": "New Request",
+          "name": "Upload Test, Post",
           "id": "d5ea5d5c-c332-457d-9efb-21ce91f6c029",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
