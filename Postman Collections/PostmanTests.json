@@ -1,0 +1,878 @@
+{
+  "info": {
+    "_postman_id": "165afd99-42d0-4c9e-bba8-85de2c9228c3",
+    "name": "IMGDump",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Test Components",
+      "item": [
+        {
+          "name": "Delete Test, Post",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "63850a83-5d99-4969-b80c-6a9d881d8672",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "0a0eae29-1c57-402a-a899-b2e7e7283dd7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "",
+                  "type": "file",
+                  "src": "TestPNG.png"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": [
+            {
+              "id": "52b32979-a426-4913-af61-a6afed9a8642",
+              "name": "Delete Test, Post",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "",
+                      "type": "file",
+                      "src": "TestPNG.png"
+                    }
+                  ],
+                  "options": {
+                    "formdata": {}
+                  }
+                },
+                "url": "http://13.53.95.77/upload_endpoint"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-length",
+                  "value": "125"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "server",
+                  "value": "drogon/1.7.3"
+                },
+                {
+                  "key": "date",
+                  "value": "Tue, 14 Dec 2021 14:00:39 GMT"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"id\": \"F54162AC57A7471B843BA60EA66135E8\",\n    \"md5\": \"E999516C1196C2E4B629D2BDAD124C2A\",\n    \"message\": \"Successful upload\",\n    \"status\": 200\n}"
+            }
+          ]
+        },
+        {
+          "name": "Delete Test, Delete",
+          "_postman_id": "7b0a06cd-0607-41d3-b851-8efd44e926bd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "http://13.53.95.77/delete/"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
+    },
+    {
+      "name": "Delete Tests",
+      "item": [
+        {
+          "name": "Delete Successful",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "3f9524f0-a4f7-4166-baf4-76d04eab2d5b",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 200\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful deletion\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "afbb66a9-2af5-44b0-8868-a49f966ac472",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/delete/{{uuid}}"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, Nothing To Delete",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "43c5a9dd-716f-4944-a86a-20e457b285a3",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "8896a5ee-d856-44c8-981d-295bf86b8954",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/delete/9AA2D3F703EC4878B11C7F6AD3E2BF"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, *",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "b7ac55aa-1a21-46c2-8ed9-92a7284c3a70",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f7f6294a-7c1a-4652-8985-32379955148a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/delete/*"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, '",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "91b56397-dcf6-49dd-92ee-594aa1e30388",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "f3783270-0270-44a0-9ce8-76ab85a4b8ae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/delete/'"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, ?",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "e4edc706-b9de-4ad9-90c7-bfcbd0e5b79d",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "0dbef16d-34bb-49f9-84af-5b009eed5fc2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/delete"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, åäö",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "bd5d27f5-48ab-4043-aebf-0a46e33c1ed6",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "67e6e417-f842-4c77-a58d-a02762edb34c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/delete/räksmörgås"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, ../*",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5212e0d4-c662-4b7b-ad98-60d08770af0e",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "0922e9c3-e9da-4959-9886-d2992521dfef",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/delete/../*"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
+    },
+    {
+      "name": "Upload Tests",
+      "item": [
+        {
+          "name": "Upload Successful",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "770b56be-97b4-4a5b-b919-414cf0ebeae0",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 200\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "_postman_id": "86488457-83f6-4936-ad77-f4c2d9d43684",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "TestPNG.png"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Successful, Large file",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must be a image' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be a image\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "2dca9d14-471c-4f11-9fdf-a0414733be21"
+              }
+            }
+          ],
+          "_postman_id": "dbd1715c-8555-452c-a914-0cb613fa110a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestLargeImage.jpg"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, Multiple files",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "223e92a9-c4dd-4a4a-8cb9-41f910e6e196"
+              }
+            }
+          ],
+          "_postman_id": "6362d302-a519-4fe2-88e2-0d8727fd1fdd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                },
+                {
+                  "key": "file2",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, No files",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "abd54e3e-f792-4e42-ba22-5d785f1b0876"
+              }
+            }
+          ],
+          "_postman_id": "8c077917-2a34-4913-bb2e-5f7115854fca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, Not an image",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must be a image' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be a image\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "8176d584-6228-462c-9c18-d5633c5a3804"
+              }
+            }
+          ],
+          "_postman_id": "ffdc9f4f-6f83-4e7f-a3f9-27a2256d9788",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/Caskaydia Cove Nerd Font Complete.ttf"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, GIF not allowed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'GIF not allowed' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"GIF not allowed\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "29fc34d2-94d0-43f7-b688-7a922280a28b"
+              }
+            }
+          ],
+          "_postman_id": "9e3273b5-aa44-48ab-9920-2ac37ba20caf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestGif.gif"
+                }
+              ],
+              "options": {
+                "formdata": {}
+              }
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
+    },
+    {
+      "name": "Get Tests",
+      "item": [
+        {
+          "name": "Get Image JPG",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Content-Type is present and is image/jpeg\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.response.to.be.header(\"Content-Type\", \"image/jpeg\")",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "42f56282-fa2a-4f7d-925e-e0836dc9b35d"
+              }
+            }
+          ],
+          "_postman_id": "847c5b3e-343a-47bc-b416-1393a8d9fbd1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/image/9AA2D3F703EC4878B11C7F6AD3E2BF78"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Image PNG",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Content-Type is present and is image/png\", function () {",
+                  "    pm.response.to.have.header(\"Content-Type\");",
+                  "    pm.response.to.be.header(\"Content-Type\", \"image/png\")",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "ea52513d-8b21-4aea-a816-90ce53fd51d5"
+              }
+            }
+          ],
+          "_postman_id": "a13bbd4d-1cef-494a-aa3a-8605931b1d7b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/image/9AA2D3F703EC4878B11C7F6AD3E2BF78"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "2192038d-6c19-4620-b31f-fbd126ddcad8"
+    }
+  ]
+}
