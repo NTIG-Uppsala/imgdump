@@ -821,6 +821,19 @@
             "url": "http://13.53.95.77/upload_endpoint"
           },
           "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "52eb9d5e-6cdd-4602-8ded-ca3aa59ac90a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null
+          },
+          "response": []
         }
       ],
       "id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
