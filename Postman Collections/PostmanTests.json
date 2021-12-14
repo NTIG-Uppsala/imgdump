@@ -22,7 +22,7 @@
               }
             }
           ],
-          "_postman_id": "0a0eae29-1c57-402a-a899-b2e7e7283dd7",
+          "id": "0a0eae29-1c57-402a-a899-b2e7e7283dd7",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -37,10 +37,7 @@
                   "type": "file",
                   "src": "TestPNG.png"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
@@ -59,10 +56,7 @@
                       "type": "file",
                       "src": "TestPNG.png"
                     }
-                  ],
-                  "options": {
-                    "formdata": {}
-                  }
+                  ]
                 },
                 "url": "http://13.53.95.77/upload_endpoint"
               },
@@ -95,7 +89,7 @@
         },
         {
           "name": "Delete Test, Delete",
-          "_postman_id": "7b0a06cd-0607-41d3-b851-8efd44e926bd",
+          "id": "7b0a06cd-0607-41d3-b851-8efd44e926bd",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -105,9 +99,22 @@
             "url": "http://13.53.95.77/delete/"
           },
           "response": []
+        },
+        {
+          "name": "New Request",
+          "id": "d5ea5d5c-c332-457d-9efb-21ce91f6c029",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": null
+          },
+          "response": []
         }
       ],
-      "_postman_id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
+      "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
     },
     {
       "name": "Delete Tests",
@@ -135,7 +142,7 @@
               }
             }
           ],
-          "_postman_id": "afbb66a9-2af5-44b0-8868-a49f966ac472",
+          "id": "afbb66a9-2af5-44b0-8868-a49f966ac472",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -176,7 +183,7 @@
               }
             }
           ],
-          "_postman_id": "8896a5ee-d856-44c8-981d-295bf86b8954",
+          "id": "8896a5ee-d856-44c8-981d-295bf86b8954",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -217,7 +224,7 @@
               }
             }
           ],
-          "_postman_id": "f7f6294a-7c1a-4652-8985-32379955148a",
+          "id": "f7f6294a-7c1a-4652-8985-32379955148a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -240,10 +247,7 @@
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
                   "disabled": true
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/delete/*"
           },
@@ -272,7 +276,7 @@
               }
             }
           ],
-          "_postman_id": "f3783270-0270-44a0-9ce8-76ab85a4b8ae",
+          "id": "f3783270-0270-44a0-9ce8-76ab85a4b8ae",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -295,10 +299,7 @@
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
                   "disabled": true
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/delete/'"
           },
@@ -327,7 +328,7 @@
               }
             }
           ],
-          "_postman_id": "0dbef16d-34bb-49f9-84af-5b009eed5fc2",
+          "id": "0dbef16d-34bb-49f9-84af-5b009eed5fc2",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -350,10 +351,7 @@
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
                   "disabled": true
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/delete"
           },
@@ -382,7 +380,7 @@
               }
             }
           ],
-          "_postman_id": "67e6e417-f842-4c77-a58d-a02762edb34c",
+          "id": "67e6e417-f842-4c77-a58d-a02762edb34c",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -405,10 +403,7 @@
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
                   "disabled": true
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/delete/räksmörgås"
           },
@@ -437,7 +432,7 @@
               }
             }
           ],
-          "_postman_id": "0922e9c3-e9da-4959-9886-d2992521dfef",
+          "id": "0922e9c3-e9da-4959-9886-d2992521dfef",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -460,17 +455,14 @@
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
                   "disabled": true
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/delete/../*"
           },
           "response": []
         }
       ],
-      "_postman_id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
+      "id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
     },
     {
       "name": "Upload Tests",
@@ -498,7 +490,7 @@
               }
             }
           ],
-          "_postman_id": "86488457-83f6-4936-ad77-f4c2d9d43684",
+          "id": "86488457-83f6-4936-ad77-f4c2d9d43684",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -520,10 +512,7 @@
                   "type": "file",
                   "src": "TestPNG.png"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
@@ -552,7 +541,7 @@
               }
             }
           ],
-          "_postman_id": "dbd1715c-8555-452c-a914-0cb613fa110a",
+          "id": "dbd1715c-8555-452c-a914-0cb613fa110a",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -574,10 +563,7 @@
                   "type": "file",
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestLargeImage.jpg"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
@@ -606,7 +592,7 @@
               }
             }
           ],
-          "_postman_id": "6362d302-a519-4fe2-88e2-0d8727fd1fdd",
+          "id": "6362d302-a519-4fe2-88e2-0d8727fd1fdd",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -633,10 +619,7 @@
                   "type": "file",
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
@@ -665,7 +648,7 @@
               }
             }
           ],
-          "_postman_id": "8c077917-2a34-4913-bb2e-5f7115854fca",
+          "id": "8c077917-2a34-4913-bb2e-5f7115854fca",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -706,7 +689,7 @@
               }
             }
           ],
-          "_postman_id": "ffdc9f4f-6f83-4e7f-a3f9-27a2256d9788",
+          "id": "ffdc9f4f-6f83-4e7f-a3f9-27a2256d9788",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -728,10 +711,7 @@
                   "type": "file",
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/Caskaydia Cove Nerd Font Complete.ttf"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
@@ -760,7 +740,7 @@
               }
             }
           ],
-          "_postman_id": "9e3273b5-aa44-48ab-9920-2ac37ba20caf",
+          "id": "9e3273b5-aa44-48ab-9920-2ac37ba20caf",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -782,17 +762,14 @@
                   "type": "file",
                   "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestGif.gif"
                 }
-              ],
-              "options": {
-                "formdata": {}
-              }
+              ]
             },
             "url": "http://13.53.95.77/upload_endpoint"
           },
           "response": []
         }
       ],
-      "_postman_id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
+      "id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
     },
     {
       "name": "Get Tests",
@@ -816,7 +793,7 @@
               }
             }
           ],
-          "_postman_id": "847c5b3e-343a-47bc-b416-1393a8d9fbd1",
+          "id": "847c5b3e-343a-47bc-b416-1393a8d9fbd1",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -853,7 +830,7 @@
               }
             }
           ],
-          "_postman_id": "a13bbd4d-1cef-494a-aa3a-8605931b1d7b",
+          "id": "a13bbd4d-1cef-494a-aa3a-8605931b1d7b",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -872,7 +849,7 @@
           "response": []
         }
       ],
-      "_postman_id": "2192038d-6c19-4620-b31f-fbd126ddcad8"
+      "id": "2192038d-6c19-4620-b31f-fbd126ddcad8"
     }
   ]
 }
