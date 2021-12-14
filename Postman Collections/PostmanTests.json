@@ -121,7 +121,51 @@
             },
             "url": null
           },
-          "response": []
+          "response": [
+            {
+              "id": "7d4de212-2e52-431a-b765-340bb228a640",
+              "name": "Upload Test, Post",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "",
+                      "type": "file",
+                      "src": "UploadPreviouslyDeleted.jpg"
+                    }
+                  ]
+                },
+                "url": "http://13.53.95.77/upload_endpoint"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-length",
+                  "value": "125"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "server",
+                  "value": "drogon/1.7.3"
+                },
+                {
+                  "key": "date",
+                  "value": "Tue, 14 Dec 2021 14:29:22 GMT"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"id\": \"0DF6DFF81D9B4202B05B0F5BB92AB4DE\",\n    \"md5\": \"4A6F8782C9EF446A952BEED5CAFC6D44\",\n    \"message\": \"Successful upload\",\n    \"status\": 200\n}"
+            }
+          ]
         }
       ],
       "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
