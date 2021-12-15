@@ -210,12 +210,12 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/deleteEndpoint/{{uuid}}"
+            "url": "http://13.53.95.77/delete_endpoint/{{uuid}}"
           },
           "response": []
         },
         {
-          "name": "Delete Successful Copy",
+          "name": "Delete Successful Manual Input",
           "event": [
             {
               "listen": "test",
@@ -251,7 +251,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/deleteEndpoint/9AA2D3F703EC4878B11C7F6AD3E2BF78"
+            "url": "http://13.53.95.77/delete_endpoint/9AA2D3F703EC4878B11C7F6AD3E2BF78"
           },
           "response": []
         },
@@ -292,7 +292,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/deleteEndpoint/9AA2D3F703EC4878B11C7F6AD3E2BF"
+            "url": "http://13.53.95.77/delete_endpoint/9AA2D3F703EC4878B11C7F6AD3E2BF"
           },
           "response": []
         },
@@ -344,7 +344,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/deleteEndpoint/*"
+            "url": "http://13.53.95.77/delete_endpoint/*"
           },
           "response": []
         },
@@ -396,7 +396,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete/'"
+            "url": "http://13.53.95.77/delete_endpoint/'"
           },
           "response": []
         },
@@ -448,7 +448,26 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete"
+            "url": {
+              "raw": "http://13.53.95.77/delete_endpoint/?",
+              "protocol": "http",
+              "host": [
+                "13",
+                "53",
+                "95",
+                "77"
+              ],
+              "path": [
+                "delete_endpoint",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         },
@@ -500,7 +519,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete/räksmörgås"
+            "url": "http://13.53.95.77/delete_endpoint/räksmörgås"
           },
           "response": []
         },
@@ -552,7 +571,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete/../*"
+            "url": "http://13.53.95.77/delete_endpoint/../*"
           },
           "response": []
         }
