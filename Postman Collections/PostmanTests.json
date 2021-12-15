@@ -396,7 +396,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/deleteEndpoint/'"
+            "url": "http://13.53.95.77/delete_endpoint/'"
           },
           "response": []
         },
