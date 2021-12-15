@@ -390,7 +390,7 @@
           "response": []
         },
         {
-          "name": "Delete failed, * Copy",
+          "name": "Delete failed, Empty input",
           "event": [
             {
               "listen": "test",
