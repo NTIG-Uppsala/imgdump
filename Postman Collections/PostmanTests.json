@@ -519,7 +519,7 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete/räksmörgås"
+            "url": "http://13.53.95.77/delete_endpoint/räksmörgås"
           },
           "response": []
         },
