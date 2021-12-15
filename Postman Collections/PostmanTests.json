@@ -448,7 +448,26 @@
                 }
               ]
             },
-            "url": "http://13.53.95.77/delete_endpoint"
+            "url": {
+              "raw": "http://13.53.95.77/delete_endpoint/?",
+              "protocol": "http",
+              "host": [
+                "13",
+                "53",
+                "95",
+                "77"
+              ],
+              "path": [
+                "delete_endpoint",
+                ""
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": null
+                }
+              ]
+            }
           },
           "response": []
         },
