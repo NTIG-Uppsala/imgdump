@@ -615,6 +615,58 @@
             "url": "http://13.53.95.77/delete_endpoint/../*"
           },
           "response": []
+        },
+        {
+          "name": "Delete failed, * Copy",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d6596c2a-7f8f-496d-9601-b6356f480bae",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "09aead17-e3e6-498f-8745-926e3062bea9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/delete_endpoint/*"
+          },
+          "response": []
         }
       ],
       "id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
