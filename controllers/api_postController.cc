@@ -1,4 +1,5 @@
 #include "api_postController.h"
+#include <string>
 using namespace api;
 //add definition of your processing function here
 void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
@@ -53,5 +54,35 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     ret["id"] = fileUuid;
     auto resp=HttpResponse::newHttpJsonResponse(ret);
     callback(resp);
+}
 
+
+void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback, std::string imageId){
+    Json::Value ret;
+    char acceptedChars[] = "1234567890ABCDEF";
+    bool validImageId = true;
+    if (imageId.length() != 32){
+        validImageId = false;
+    }
+    for(auto & elem: imageId){
+        bool validChar = false;
+        for(auto & character: acceptedChars) {
+            if ( elem == character){
+                validChar = true;
+            }
+        }
+        if (validChar == false){
+            validImageId = false;
+        }
+    }
+    if (validImageId == false){
+        ret["status"] = 403;
+        ret["message"] = "Invalid uuid =(";
+        auto resp=HttpResponse::newHttpJsonResponse(ret);
+        callback(resp);
+    }
+    ret["status"] = 200;
+    ret["message"] = "Valid uuid!";
+    auto resp=HttpResponse::newHttpJsonResponse(ret);
+    callback(resp);
 }
