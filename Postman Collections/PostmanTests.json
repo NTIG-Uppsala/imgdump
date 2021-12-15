@@ -210,7 +210,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/delete/{{uuid}}"
+            "url": "http://13.53.95.77/deleteEndpoint/{{uuid}}"
           },
           "response": []
         },
