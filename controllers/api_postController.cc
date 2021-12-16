@@ -58,7 +58,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     callback(resp);
 }
 
-// This function deletes an image from the database and storage, using UUID.
+// This function deletes an image from the database and storage, using the UUID.
 void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback, std::string imageId){
     Json::Value ret;
     std::ostringstream databaseSelectQuery;
@@ -71,7 +71,7 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
     if (imageId.length() != 32){
         validImageId = false;
     }
-    // Checks if UUID only contains valid characters
+    // Checks if the UUID only contains valid characters
     char acceptedChars[] = "1234567890ABCDEF";
     // Loops through every character of imageId
     for(auto& digit: imageId){
@@ -142,7 +142,7 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
             callback(resp);
         }
     }
-    // Send error if the input UUID is not valid
+    // Send error if the UUID input is not valid
     else{
         ret["status"] = 403;
         ret["message"] = "Invalid uuid";
