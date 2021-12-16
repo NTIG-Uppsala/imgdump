@@ -648,7 +648,7 @@
           "response": []
         },
         {
-          "name": "Delete failed, Nothing To Delete Copy",
+          "name": "Delete failed, Manual uuid input",
           "event": [
             {
               "listen": "test",
