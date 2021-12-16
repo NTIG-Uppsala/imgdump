@@ -297,6 +297,313 @@
       "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
     },
     {
+      "name": "Upload Tests",
+      "item": [
+        {
+          "name": "Upload Successful",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "770b56be-97b4-4a5b-b919-414cf0ebeae0",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 200\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "86488457-83f6-4936-ad77-f4c2d9d43684",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "TestPNG.png"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload Successful, Large file",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "2dca9d14-471c-4f11-9fdf-a0414733be21",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 200\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Successful upload\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "dbd1715c-8555-452c-a914-0cb613fa110a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "TestLargeImage.jpg"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, Multiple files",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "223e92a9-c4dd-4a4a-8cb9-41f910e6e196"
+              }
+            }
+          ],
+          "id": "6362d302-a519-4fe2-88e2-0d8727fd1fdd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                },
+                {
+                  "key": "file2",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, No files",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "id": "abd54e3e-f792-4e42-ba22-5d785f1b0876"
+              }
+            }
+          ],
+          "id": "8c077917-2a34-4913-bb2e-5f7115854fca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, Not an image",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "8176d584-6228-462c-9c18-d5633c5a3804",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'Must be an image' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be an image\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "ffdc9f4f-6f83-4e7f-a3f9-27a2256d9788",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "Caskaydia Cove Nerd Font Complete.ttf"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        },
+        {
+          "name": "Upload failed, GIF not allowed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "29fc34d2-94d0-43f7-b688-7a922280a28b",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Body has 'GIF not allowed' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"GIF is not allowed\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "9e3273b5-aa44-48ab-9920-2ac37ba20caf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "TestGif.gif"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
+        }
+      ],
+      "id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
+    },
+    {
       "name": "Delete Tests",
       "item": [
         {
@@ -673,313 +980,6 @@
         }
       ],
       "id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
-    },
-    {
-      "name": "Upload Tests",
-      "item": [
-        {
-          "name": "Upload Successful",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "770b56be-97b4-4a5b-b919-414cf0ebeae0",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 200\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(200);",
-                  "});",
-                  "",
-                  "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "86488457-83f6-4936-ad77-f4c2d9d43684",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "TestPNG.png"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload Successful, Large file",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "2dca9d14-471c-4f11-9fdf-a0414733be21",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 200\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(200);",
-                  "});",
-                  "",
-                  "pm.test(\"Successful upload\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "dbd1715c-8555-452c-a914-0cb613fa110a",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "TestLargeImage.jpg"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload failed, Multiple files",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "id": "223e92a9-c4dd-4a4a-8cb9-41f910e6e196"
-              }
-            }
-          ],
-          "id": "6362d302-a519-4fe2-88e2-0d8727fd1fdd",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
-                },
-                {
-                  "key": "file2",
-                  "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload failed, No files",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Body has 'Must Be One File' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
-                  "});"
-                ],
-                "type": "text/javascript",
-                "id": "abd54e3e-f792-4e42-ba22-5d785f1b0876"
-              }
-            }
-          ],
-          "id": "8c077917-2a34-4913-bb2e-5f7115854fca",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload failed, Not an image",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "8176d584-6228-462c-9c18-d5633c5a3804",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Body has 'Must be an image' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Must be an image\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "ffdc9f4f-6f83-4e7f-a3f9-27a2256d9788",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "Caskaydia Cove Nerd Font Complete.ttf"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload failed, GIF not allowed",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "29fc34d2-94d0-43f7-b688-7a922280a28b",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Body has 'GIF not allowed' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"GIF is not allowed\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "9e3273b5-aa44-48ab-9920-2ac37ba20caf",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "TestGif.gif"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        }
-      ],
-      "id": "4bf7133e-6ee7-4f42-a4e3-3e0af6a4dc62"
     },
     {
       "name": "Get Tests",
