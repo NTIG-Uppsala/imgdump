@@ -407,6 +407,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "223e92a9-c4dd-4a4a-8cb9-41f910e6e196",
                 "exec": [
                   "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
                   "",
@@ -419,8 +420,7 @@
                   "    pm.expect(pm.response.text()).to.include(\"Must be one file\");",
                   "});"
                 ],
-                "type": "text/javascript",
-                "id": "223e92a9-c4dd-4a4a-8cb9-41f910e6e196"
+                "type": "text/javascript"
               }
             }
           ],
@@ -444,12 +444,12 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                  "src": "Test.JpG"
                 },
                 {
                   "key": "file2",
                   "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestJPG.jpg"
+                  "src": "TestPNG.png"
                 }
               ]
             },
