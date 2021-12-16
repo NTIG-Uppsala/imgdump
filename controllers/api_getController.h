@@ -15,7 +15,7 @@ class getController:public drogon::HttpController<getController>
     ADD_METHOD_TO(getController::GetImageAndRespondToClient,"/image/{1}",Get);//path is /image/{1}
 
     METHOD_LIST_END
-    // your declaration of processing function maybe like this:
+    // your declaration of the processing function may look like this:
     // void get(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback,int p1,std::string p2);
     // void your_method_name(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback,double p1,int p2) const;
     void ViewTestFileUpload(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback);
