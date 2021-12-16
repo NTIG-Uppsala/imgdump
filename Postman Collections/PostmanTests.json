@@ -982,6 +982,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "29fc34d2-94d0-43f7-b688-7a922280a28b",
                 "exec": [
                   "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
                   "",
@@ -994,8 +995,7 @@
                   "    pm.expect(pm.response.text()).to.include(\"GIF not allowed\");",
                   "});"
                 ],
-                "type": "text/javascript",
-                "id": "29fc34d2-94d0-43f7-b688-7a922280a28b"
+                "type": "text/javascript"
               }
             }
           ],
@@ -1019,7 +1019,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestGif.gif"
+                  "src": "TestGif.gif"
                 }
               ]
             },
