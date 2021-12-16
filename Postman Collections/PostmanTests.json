@@ -300,47 +300,6 @@
       "name": "Delete Tests",
       "item": [
         {
-          "name": "Delete Successful Manual Input",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "2c3e88c5-3218-4d2d-a6aa-b41a54fe2229",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 200\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(200);",
-                  "});",
-                  "",
-                  "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Successful deletion\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "81df9153-690c-42d3-8d9e-7a50adba8b37",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": "http://13.53.95.77/delete_endpoint/A41D97AEC0114804A1DDD423X849A9EA"
-          },
-          "response": []
-        },
-        {
           "name": "Delete failed, Nothing To Delete",
           "event": [
             {
