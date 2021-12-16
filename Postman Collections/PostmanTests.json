@@ -166,13 +166,7 @@
               "body": "{\n    \"id\": \"0DF6DFF81D9B4202B05B0F5BB92AB4DE\",\n    \"md5\": \"4A6F8782C9EF446A952BEED5CAFC6D44\",\n    \"message\": \"Successful upload\",\n    \"status\": 200\n}"
             }
           ]
-        }
-      ],
-      "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
-    },
-    {
-      "name": "Delete Tests",
-      "item": [
+        },
         {
           "name": "Delete Successful",
           "event": [
@@ -254,7 +248,13 @@
               "body": "{\n    \"message\": \"Image successfully deleted\",\n    \"status\": 200\n}"
             }
           ]
-        },
+        }
+      ],
+      "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
+    },
+    {
+      "name": "Delete Tests",
+      "item": [
         {
           "name": "Delete Successful Manual Input",
           "event": [
