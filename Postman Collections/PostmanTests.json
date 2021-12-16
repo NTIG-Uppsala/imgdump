@@ -1027,6 +1027,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "ea52513d-8b21-4aea-a816-90ce53fd51d5",
                 "exec": [
                   "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
                   "",
@@ -1035,8 +1036,7 @@
                   "    pm.response.to.be.header(\"Content-Type\", \"image/png\")",
                   "});"
                 ],
-                "type": "text/javascript",
-                "id": "ea52513d-8b21-4aea-a816-90ce53fd51d5"
+                "type": "text/javascript"
               }
             }
           ],
@@ -1054,7 +1054,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/image/9AA2D3F703EC4878B11C7F6AD3E2BF78"
+            "url": "http://13.53.95.77/image/5932BD7856A44AC58E125C938B3B07D2"
           },
           "response": []
         }
