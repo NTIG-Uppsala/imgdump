@@ -457,7 +457,7 @@
                   "});",
                   "",
                   "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "    pm.expect(pm.response.text()).to.include(\"Invalid uuid\");",
                   "});"
                 ],
                 "type": "text/javascript"
