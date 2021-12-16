@@ -792,8 +792,8 @@
                   "    pm.expect(jsonData.status).to.eql(200);",
                   "});",
                   "",
-                  "pm.test(\"Upload Successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Upload Successful\");",
+                  "pm.test(\"Successful upload\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");",
                   "});"
                 ],
                 "type": "text/javascript"
