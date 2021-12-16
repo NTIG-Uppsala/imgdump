@@ -667,58 +667,6 @@
             "url": "http://13.53.95.77/delete_endpoint/räksmörgås"
           },
           "response": []
-        },
-        {
-          "name": "Delete failed, ../*",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5212e0d4-c662-4b7b-ad98-60d08770af0e",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Invalid uuid\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "0922e9c3-e9da-4959-9886-d2992521dfef",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "file",
-                  "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
-                  "disabled": true
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/delete_endpoint/../*"
-          },
-          "response": []
         }
       ],
       "id": "8c05407b-5c81-4095-837e-be86fc6ded2a"
