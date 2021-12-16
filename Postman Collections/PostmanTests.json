@@ -648,47 +648,6 @@
           "response": []
         },
         {
-          "name": "Delete failed, Manual uuid input",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "134769d9-382a-4bea-9a52-532a6c089f4a",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
-                  "",
-                  "pm.test(\"Image upload 403\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
-                  "});",
-                  "",
-                  "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"uuid not found in database\");",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "46cacc04-fb58-475c-b0a0-f35b56d0cad3",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "file",
-                "value": "",
-                "type": "text",
-                "disabled": true
-              }
-            ],
-            "url": "http://13.53.95.77/delete_endpoint/4B58F3A675A340A3B272DA6EFAA7CDFA"
-          },
-          "response": []
-        },
-        {
           "name": "Delete failed, *",
           "event": [
             {
@@ -1016,6 +975,47 @@
               ]
             },
             "url": "http://13.53.95.77/delete_endpoint/räksmörgås"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, Manual uuid input",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "134769d9-382a-4bea-9a52-532a6c089f4a",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"uuid not found in database\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "46cacc04-fb58-475c-b0a0-f35b56d0cad3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": "http://13.53.95.77/delete_endpoint/4B58F3A675A340A3B272DA6EFAA7CDFA"
           },
           "response": []
         }
