@@ -931,6 +931,7 @@
             {
               "listen": "test",
               "script": {
+                "id": "8176d584-6228-462c-9c18-d5633c5a3804",
                 "exec": [
                   "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
                   "",
@@ -939,12 +940,11 @@
                   "    pm.expect(jsonData.status).to.eql(403);",
                   "});",
                   "",
-                  "pm.test(\"Body has 'Must be a image' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Must be a image\");",
+                  "pm.test(\"Body has 'Must be an image' message\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Must be an image\");",
                   "});"
                 ],
-                "type": "text/javascript",
-                "id": "8176d584-6228-462c-9c18-d5633c5a3804"
+                "type": "text/javascript"
               }
             }
           ],
@@ -968,7 +968,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/Caskaydia Cove Nerd Font Complete.ttf"
+                  "src": "Caskaydia Cove Nerd Font Complete.ttf"
                 }
               ]
             },
