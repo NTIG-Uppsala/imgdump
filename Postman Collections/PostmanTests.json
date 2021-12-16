@@ -940,7 +940,7 @@
                   "});",
                   "",
                   "pm.test(\"Body has 'GIF not allowed' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"GIF not allowed\");",
+                  "    pm.expect(pm.response.text()).to.include(\"GIF is not allowed\");",
                   "});"
                 ],
                 "type": "text/javascript"
