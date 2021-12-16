@@ -312,7 +312,7 @@
                   "});",
                   "",
                   "pm.test(\"Is successful\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "    pm.expect(pm.response.text()).to.include(\"uuid not found in database\");",
                   "});"
                 ],
                 "type": "text/javascript"
