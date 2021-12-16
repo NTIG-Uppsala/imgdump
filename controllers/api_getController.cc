@@ -38,6 +38,6 @@ void getController::GetImageAndRespondToClient(const HttpRequestPtr& req,std::fu
       fileType = ContentType::CT_IMAGE_PNG;
     }
 
-    auto resp = HttpResponse::newFileResponse(filePath.str(), fileName.str(), fileType); // ct bestämmer vilke ext
+    auto resp = HttpResponse::newFileResponse(filePath.str(), fileName.str(), fileType); // ct bestämmer ext
     callback(resp);
 }

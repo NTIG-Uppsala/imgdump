@@ -6,7 +6,7 @@
     <script type="text/javascript">
         let xhr;
         //File uploading method
-        function UpladFile() {
+        function UploadFile() {
             let fileObj = document.getElementById("file").files[0]; // js get file object
             let url =  "/upload_endpoint"; 
 
@@ -36,7 +36,7 @@
             document.getElementById('message').innerHTML = "Upload failed.";
         }
         
-        function cancleUploadFile(){
+        function cancelUploadFile(){
             xhr.abort();
         }
 
@@ -79,7 +79,7 @@
 <br /><br />
 <p>File must be smaller than 500 MiB!</p>
 <input type="file" id="file" name="myfile" />
-<input type="button" onclick="UpladFile()" value="Upload" />
-<input type="button" onclick="cancleUploadFile()" value="Cancel" />
+<input type="button" onclick="UploadFile()" value="Upload" />
+<input type="button" onclick="cancelUploadFile()" value="Cancel" />
 </body>
 </html>

@@ -212,7 +212,48 @@
             ],
             "url": "http://13.53.95.77/delete_endpoint/{{uuid}}"
           },
-          "response": []
+          "response": [
+            {
+              "id": "6478320d-6c01-426c-b578-fa70d5946f92",
+              "name": "Delete Successful",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "file",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": "http://13.53.95.77/delete_endpoint/4B58F3A675A340A3B272DA6EFAA7CDFA"
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "content-length",
+                  "value": "53"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "server",
+                  "value": "drogon/1.7.3"
+                },
+                {
+                  "key": "date",
+                  "value": "Wed, 15 Dec 2021 13:56:27 GMT"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n    \"message\": \"Image successfully deleted\",\n    \"status\": 200\n}"
+            }
+          ]
         },
         {
           "name": "Delete Successful Manual Input",
@@ -251,7 +292,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/delete_endpoint/9AA2D3F703EC4878B11C7F6AD3E2BF78"
+            "url": "http://13.53.95.77/delete_endpoint/A41D97AEC0114804A1DDD423X849A9EA"
           },
           "response": []
         },
@@ -292,7 +333,7 @@
                 "disabled": true
               }
             ],
-            "url": "http://13.53.95.77/delete_endpoint/9AA2D3F703EC4878B11C7F6AD3E2BF"
+            "url": "http://13.53.95.77/delete_endpoint/4B58F3A675A340A3B272DA6EFAA7CDFA"
           },
           "response": []
         },
@@ -345,6 +386,110 @@
               ]
             },
             "url": "http://13.53.95.77/delete_endpoint/*"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, Lowercase uuid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "c646375c-ba70-47e1-9985-e0c51fd1afae",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "641af07d-6f6c-42da-af0d-53c3993dd2f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/delete_endpoint/a1b2c3d4e5f6a7b8a1b2c3d4e5f6a7b8"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete failed, Empty input",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "d6596c2a-7f8f-496d-9601-b6356f480bae",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
+                  "",
+                  "pm.test(\"Image upload 403\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "});",
+                  "",
+                  "pm.test(\"Is successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Please select a file you wish to delete\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "09aead17-e3e6-498f-8745-926e3062bea9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "file",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestPNG.png",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/delete_endpoint/"
           },
           "response": []
         },
