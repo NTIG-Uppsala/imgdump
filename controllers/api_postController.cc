@@ -1,7 +1,7 @@
 #include "api_postController.h"
 #include <string>
 using namespace api;
-//add definition of your processing function here
+// Add definition of your processing function here
 void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
     Json::Value ret;
     MultiPartParser fileUpload;
@@ -61,23 +61,26 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
 // This function deletes an image from database and storage, using uuid.
 void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback, std::string imageId){
     Json::Value ret;
-    std::ostringstream databaseQuery1;
-    std::ostringstream databaseQuery2;
+    std::ostringstream databaseSelectQuery;
+    std::ostringstream databaseDeleteQuery;
+    std::string imageIdExists;
     bool validImageId = true;
-    std::string exists;
     // uuid's are always 32 characters long in C++
     if (imageId.length() != 32){
         validImageId = false;
     }
     // Checks if uuid only contains valid characters
     char acceptedChars[] = "1234567890ABCDEF";
-    for(auto& elem: imageId){
+    // Loops through every character of imageId
+    for(auto& digit: imageId){
         bool validChar = false;
+        // Loops through every character of accepted chars
         for(auto& character: acceptedChars) {
-            if ( elem == character){
+            if ( digit == character){
                 validChar = true;
             }
         }
+        // if a faulty character is found the imageId is invalid
         if (validChar == false){
             validImageId = false;
         }
@@ -86,34 +89,31 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
     if (validImageId == true){
         // Checks the database for the uuid
         auto clientPtr = drogon::app().getDbClient();
-        databaseQuery1 << "SELECT `uuid` FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
-        auto sentQuery1 = clientPtr -> execSqlAsyncFuture(databaseQuery1.str(), "default"); // Send the query to the database
+        databaseSelectQuery << "SELECT `uuid` FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
+        auto sentSelectQuery = clientPtr -> execSqlAsyncFuture(databaseSelectQuery.str(), "default"); // Send the query to the database
         try {
-            auto result = sentQuery1.get(); // Hämtar resultat från query
+            auto result = sentSelectQuery.get();
             for (auto row : result)
             {
-                exists = row["uuid"].as<std::string>();
+                imageIdExists = row["uuid"].as<std::string>();
             }
         } 
             catch (int error) {
                 std::cerr << "errors:" << error << std::endl;
         }
         // If the uuid does not exist in database, send error
-        if (exists == ""){
+        if (imageIdExists == ""){
             ret["status"] = 403;
             ret["message"] = "uuid not found in database";
             auto resp=HttpResponse::newHttpJsonResponse(ret);
-            imageId = "";
             callback(resp);
         }
         // Else delete the row from the database
-        databaseQuery2 << "DELETE FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
-        auto sentQuery2 = clientPtr -> execSqlAsyncFuture(databaseQuery2.str(), "default"); // Send the query to the database
+        databaseDeleteQuery << "DELETE FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
+        auto sentDeleteQuery = clientPtr -> execSqlAsyncFuture(databaseDeleteQuery.str(), "default"); // Send the query to the database
         ret["status"] = 200;
         ret["message"] = "Image successfully deleted";
-        ret["exists printout"] = exists;
         auto resp=HttpResponse::newHttpJsonResponse(ret);
-        imageId = "";
         callback(resp);
     }
     // Send error if the input uuid is not valid
@@ -121,7 +121,6 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
         ret["status"] = 403;
         ret["message"] = "Invalid uuid";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
-        imageId = "";
         callback(resp);
     }
 }
