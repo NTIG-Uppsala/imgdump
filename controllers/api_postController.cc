@@ -18,7 +18,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
     auto fileExt = file.getFileExtension();
     if(fileExt == "gif"){
         ret["status"] = 403;
-        ret["message"] = "GIF not allowed";
+        ret["message"] = "GIF is not allowed";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
@@ -26,7 +26,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
 
     if(file.getFileType() != FileType::FT_IMAGE){
         ret["status"] = 403;
-        ret["message"] = "Must be a image";
+        ret["message"] = "Must be an image";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
         return;
@@ -77,7 +77,7 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
     }
     if (validImageId == false){
         ret["status"] = 403;
-        ret["message"] = "Invalid uuid =(";
+        ret["message"] = "Invalid uuid";
         auto resp=HttpResponse::newHttpJsonResponse(ret);
         callback(resp);
     }
