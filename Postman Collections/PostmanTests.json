@@ -783,20 +783,20 @@
             {
               "listen": "test",
               "script": {
+                "id": "2dca9d14-471c-4f11-9fdf-a0414733be21",
                 "exec": [
                   "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));",
                   "",
-                  "pm.test(\"Image upload 403\", function () {",
+                  "pm.test(\"Image upload 200\", function () {",
                   "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.eql(403);",
+                  "    pm.expect(jsonData.status).to.eql(200);",
                   "});",
                   "",
-                  "pm.test(\"Body has 'Must be a image' message\", function () {",
-                  "    pm.expect(pm.response.text()).to.include(\"Must be a image\");",
+                  "pm.test(\"Upload Successful\", function () {",
+                  "    pm.expect(pm.response.text()).to.include(\"Upload Successful\");",
                   "});"
                 ],
-                "type": "text/javascript",
-                "id": "2dca9d14-471c-4f11-9fdf-a0414733be21"
+                "type": "text/javascript"
               }
             }
           ],
@@ -820,7 +820,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/C:/Users/viktor.isenborg/Documents/Postman/postman-stuff/TestLargeImage.jpg"
+                  "src": "TestLargeImage.jpg"
                 }
               ]
             },
