@@ -5,6 +5,7 @@ using namespace api;
 void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void (const HttpResponsePtr &)> &&callback){
     Json::Value ret;
     MultiPartParser fileUpload;
+    // Uploading multiple files at once is not allowed
     if (fileUpload.parse(req) != 0 || fileUpload.getFiles().size() != 1)
     {
         ret["status"] = 403;
@@ -23,7 +24,7 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
         callback(resp);
         return;
     }
-
+    // Checks the file extension to see if the file is an image
     if(file.getFileType() != FileType::FT_IMAGE){
         ret["status"] = 403;
         ret["message"] = "Must be an image";
@@ -32,21 +33,22 @@ void postController::uploadEndpoint(const HttpRequestPtr& req,std::function<void
         return;
     }
 
+    // Format a query for uploading a file to database
     auto md5 = file.getMd5();
     auto fileUuid = drogon::utils::getUuid();
     file.saveAs(fileUuid);
     std::ostringstream databaseQuery;
-    databaseQuery << "INSERT INTO `images`(`id`, `uuid`, `fileExt`, `md5`) VALUES (NULL,'" << fileUuid << "','" << fileExt << "','" << md5 << "')";
+    databaseQuery << "INSERT INTO `images`(`id`, `uuid`, `fileExt`, `md5`) VALUES (NULL,'" << fileUuid << "','" << fileExt << "','" << md5 << "')"; 
 
+    // Send the query to the database
     auto clientPtr = drogon::app().getDbClient();
-    auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default");
+    auto sentQuery = clientPtr -> execSqlAsyncFuture(databaseQuery.str(), "default"); 
     try {
-      auto result = sentQuery.get();
-    } 
-      catch (int error) {
+        auto result = sentQuery.get();
+    }
+        catch (int error) {
         std::cerr << "errors:" << error << std::endl;
     }
-    
 
     ret["status"] = 200;
     ret["md5"] = md5;
@@ -63,7 +65,7 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
     std::ostringstream databaseQuery2;
     bool validImageId = true;
     std::string exists;
-    // uuid are always 32 characters long in C++
+    // uuid's are always 32 characters long in C++
     if (imageId.length() != 32){
         validImageId = false;
     }
@@ -80,12 +82,14 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
             validImageId = false;
         }
     }
+    
     if (validImageId == true){
+        // Checks the database for the uuid
         auto clientPtr = drogon::app().getDbClient();
-        databaseQuery1 << "SELECT `uuid` FROM `images` WHERE uuid = '" << imageId << "';"; //"SELECT EXISTS (SELECT * FROM `images` WHERE uuid = '" << imageId << "');"; //Formaterar queryn
-        auto sentQuery1 = clientPtr -> execSqlAsyncFuture(databaseQuery1.str(), "default"); //Skickar en query till databasen
+        databaseQuery1 << "SELECT `uuid` FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
+        auto sentQuery1 = clientPtr -> execSqlAsyncFuture(databaseQuery1.str(), "default"); // Send the query to the database
         try {
-            auto result = sentQuery1.get(); //Hämtar resultat från query
+            auto result = sentQuery1.get(); // Hämtar resultat från query
             for (auto row : result)
             {
                 exists = row["uuid"].as<std::string>();
@@ -94,17 +98,17 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
             catch (int error) {
                 std::cerr << "errors:" << error << std::endl;
         }
+        // If the uuid does not exist in database, send error
         if (exists == ""){
             ret["status"] = 403;
             ret["message"] = "uuid not found in database";
-            ret["valid image id checker"] = validImageId;
-            ret["image id length"] = imageId.length();
             auto resp=HttpResponse::newHttpJsonResponse(ret);
             imageId = "";
             callback(resp);
         }
-        databaseQuery2 << "DELETE FROM `images` WHERE uuid = '" << imageId << "';"; //Formaterar queryn
-        auto sentQuery2 = clientPtr -> execSqlAsyncFuture(databaseQuery2.str(), "default"); //Skickar en query till databasen
+        // Else delete the row from the database
+        databaseQuery2 << "DELETE FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
+        auto sentQuery2 = clientPtr -> execSqlAsyncFuture(databaseQuery2.str(), "default"); // Send the query to the database
         ret["status"] = 200;
         ret["message"] = "Image successfully deleted";
         ret["exists printout"] = exists;
@@ -112,6 +116,7 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
         imageId = "";
         callback(resp);
     }
+    // Send error if the input uuid is not valid
     else{
         ret["status"] = 403;
         ret["message"] = "Invalid uuid";
