@@ -248,6 +248,50 @@
               "body": "{\n    \"message\": \"Image successfully deleted\",\n    \"status\": 200\n}"
             }
           ]
+        },
+        {
+          "name": "Upload Successful, Previously Deleted",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "20b08503-2abc-41f0-a10f-2ae1c33442dd",
+                "exec": [
+                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
+                  "\r",
+                  "pm.test(\"Image upload 200\", function () {\r",
+                  "    var jsonData = pm.response.json();\r",
+                  "    pm.expect(jsonData.status).to.eql(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Is successful\", function () {\r",
+                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");\r",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "id": "52eb9d5e-6cdd-4602-8ded-ca3aa59ac90a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "",
+                  "type": "file",
+                  "src": "UploadPreviouslyDeleted.jpg"
+                }
+              ]
+            },
+            "url": "http://13.53.95.77/upload_endpoint"
+          },
+          "response": []
         }
       ],
       "id": "3a51fd16-7dd1-4d4b-8507-9a5574a4603b"
@@ -968,50 +1012,6 @@
                   "key": "file",
                   "type": "file",
                   "src": "TestGif.gif"
-                }
-              ]
-            },
-            "url": "http://13.53.95.77/upload_endpoint"
-          },
-          "response": []
-        },
-        {
-          "name": "Upload Successful, Previously Deleted",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "20b08503-2abc-41f0-a10f-2ae1c33442dd",
-                "exec": [
-                  "pm.test(\"Status code is 200\", () => pm.response.to.have.status(200));\r",
-                  "\r",
-                  "pm.test(\"Image upload 200\", function () {\r",
-                  "    var jsonData = pm.response.json();\r",
-                  "    pm.expect(jsonData.status).to.eql(200);\r",
-                  "});\r",
-                  "\r",
-                  "pm.test(\"Is successful\", function () {\r",
-                  "    pm.expect(pm.response.text()).to.include(\"Successful upload\");\r",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "id": "52eb9d5e-6cdd-4602-8ded-ca3aa59ac90a",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "",
-                  "type": "file",
-                  "src": "UploadPreviouslyDeleted.jpg"
                 }
               ]
             },
