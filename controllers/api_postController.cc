@@ -63,7 +63,9 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
     Json::Value ret;
     std::ostringstream databaseSelectQuery;
     std::ostringstream databaseDeleteQuery;
+    std::ostringstream databaseConfirmQuery;
     std::string imageIdExists;
+    std::string imageIdConfirm;
     bool validImageId = true;
     // UUID's are always 32 characters long in C++
     if (imageId.length() != 32){
@@ -111,10 +113,34 @@ void postController::deleteEndpoint(const HttpRequestPtr& req,std::function<void
         // Else delete the row from the database
         databaseDeleteQuery << "DELETE FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
         auto sentDeleteQuery = clientPtr -> execSqlAsyncFuture(databaseDeleteQuery.str(), "default"); // Send the query to the database
-        ret["status"] = 200;
-        ret["message"] = "Image successfully deleted";
-        auto resp=HttpResponse::newHttpJsonResponse(ret);
-        callback(resp);
+        
+        // Confirms that the delete query was successful 
+        databaseConfirmQuery << "SELECT `uuid` FROM `images` WHERE uuid = '" << imageId << "';"; // Format the query
+        auto sentConfirmQuery = clientPtr -> execSqlAsyncFuture(databaseConfirmQuery.str(), "default"); // Send the query to the database
+        try {
+            auto resultConfirm = sentConfirmQuery.get();
+            for (auto row : resultConfirm)
+            {
+                imageIdConfirm = row["uuid"].as<std::string>();
+            }
+        } 
+            catch (int error) {
+                std::cerr << "errors:" << error << std::endl;
+        }
+        // If the uuid does not exist in database, send success message
+        if (imageIdConfirm == ""){
+            ret["status"] = 200;
+            ret["message"] = "Image successfully deleted";
+            auto resp=HttpResponse::newHttpJsonResponse(ret);
+            callback(resp);
+        }
+        // for edgecases where the delete query went wrong
+        else{
+            ret["status"] = 403;
+            ret["message"] = "Something went wrong, try again";
+            auto resp=HttpResponse::newHttpJsonResponse(ret);
+            callback(resp);
+        }
     }
     // Send error if the input UUID is not valid
     else{
