@@ -390,7 +390,7 @@
           "response": []
         },
         {
-          "name": "Delete failed, * Copy",
+          "name": "Delete failed, Lowercase uuid",
           "event": [
             {
               "listen": "test",
